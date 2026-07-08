@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->string('device_name');
+            $table->string('device_token')->nullable();
+            $table->timestamp('last_login')->nullable();
+
             $table->timestamps();
         });
     }

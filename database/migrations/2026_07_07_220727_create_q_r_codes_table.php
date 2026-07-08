@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('q_r_codes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('session_id')->constrained()->cascadeOnDelete();
+
+            $table->string('code');
+            $table->enum('type', ['start', 'end']);
+            $table->timestamp('expires_at');
+
             $table->timestamps();
         });
     }
